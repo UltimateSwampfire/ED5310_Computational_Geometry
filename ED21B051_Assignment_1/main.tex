@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage[parfill]{parskip}
+\title{Assignment 1 - Variations in Art Gallery Problems}
+\author{Revanth N Rajan ED21B051}
+\date{August 2025}
+
+\begin{document}
+
+\maketitle
+\section{Introduction}
+This document compiles selected variants of the classic Art Gallery Problem, which derives from the real-world problem - \textit{"What is the minimum number of security guards required to observe at all times, the entirety of an art gallery?"}.
+
+Geometrically, the classic problem represents the layout of the art gallery as a simple polygon, and each guard is approximated as a vertex guard, occupying no space and represents only a point in the polygon. A set of guards $G$ are said to successfully guard the polygonal art gallery $P$ if for every point $p\in P$, there exists some vertex guard $g\in G$ such that the line segment between $p$ and $g$ lies entirely within the polygon $P$.
+
+
+This document provides a brief overview to different variants of this classic problem that enforce different setups and relaxations of assumptions, usually being reflective of real-world scenarios where these variants can be applied. 
+\section{\href{https://arxiv.org/pdf/2209.10291}{The Dispersive Art Gallery Problem (2023)}}
+Unlike the traditional Art Gallery problem, this variant does not attempt to find a guard set of minimum cardinality, rather find guard sets with the largest possible distances between the vertex guards themselves. The problem is stated formally in the following manner. 
+
+\textit{Given a polygon $P$ and a real number $l$, decide whether there exists a guard set $G$ for $P$ such that the pairwise geodesic distances between any two pairs of guards in $G$ are at least $l$.}
+
+An applicative example of this problem is in the case of a fire outbreak in the Art Gallery. An ideal solution to the classic Art Gallery problem which minimizes the number of vertex guards, does not guarantee the guards being sufficiently separate from one another. Guards clustered in a single area could be affected all together, causing a much more alarming issue.
+
+The paper deals particularly with polyominoes rather than a general polygon. Polyominoes are orthogonal polygons who's vertices have integer coordinates.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{figures/dispersive_art_gallery_problem_1.png}
+    \caption{A polyomino with two sets of vertex guards (black and dark cyan). The black set represents an optimal guard set for the classic Art Gallery Problem, while the dark cyan set represents the optimal guard set for the \textit{Dispersive Art Gallery Problem.} The latter set is much more dispersed than the former.}
+    \label{fig:placeholder}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\href{https://arxiv.org/pdf/2412.13938}{The Contiguous Art Gallery Problem (2024)}}
+In this Art Gallery Problem variant, given a polygon $P$, the goal is to partition the polygon boundary into a minimum numbering set of polygonal chains, such that each chain is visible to at least one guard. Note that neither the guards or the chain end-points are restricted to the vertices of $P$.
+
+In most decision problem variants, the required solution is a boolean asking if a polygon $P$ can be guarded with $k$ or fewer guards, with various levels of relaxations on the abilities of the vertex guards (Limited field of view, mobile, limited distance visibility, etc). These problems are classified under NP-hard, meaning they can be solved only in non-deterministic polynomial time.
+
+In contrast, the authors propose a polynomial-time algorithm for the \textit{Contiguous Art Gallery Problem}. Their algorithm repeatedly traverses the polygonal boundary, and finds an optimal solution with an algorithmic complexity of O($n^6log(n)$).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/contiguous_art_gallery_problem.png}
+    \caption{(Left) Optimal solution to the Contiguous Art Gallery Problem with vertex-restricted guards; This solution requires 4 guards to cover the entire polygon boundary. (Right) Guards unrestricted to the vertices of the given polygon, with polygon-chains having end-points on non-vertex points on the polygonal boundary; This solution only requires 2 guards to cover the entire boundary.}
+    \label{fig:placeholder}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\href{https://ieeexplore.ieee.org/document/9504843}{The Sectional Art Gallery Problem (2021)}}
+This paper proposes another extension to the classic Art Gallery Problem, where the gallery now contains two distinct sections. One section defines the space where guards are allowed to be placed. The second section represents the area which is actually supposed to be covered by the guards. This problem is terms as the \textit{Sectional Art Gallery Problem}.
+
+An application mentioned in the paper is drone surveillance of an internal courtyard surrounded by houses, where the drones are allowed to operate from a limited space surrounding the courtyard.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{figures/sectional_art_gallery_problem.png}
+    \caption{An application of the \textit{Sectional Art Gallery Problem}; Surveillance drones ($g$) are allowed to observe the courtyard $S_W$ while patrolling within $S_G$; The courtyard is surrounded by four houses (holes) and the drones must maintain safe distances from the houses and the courtyard.}
+    \label{fig:placeholder}
+\end{figure}
+\newpage
+\section{References}
+\begin{itemize}
+    \item C. Rieck and C. Scheffer, “The Dispersive Art Gallery Problem”, arXiv preprint arXiv:2209.10291, 2022. [Online]. Available: https://arxiv.org/abs/2209.10291
+    \item M. C. R. Merrild, C. M. Rysgaard, J. K. R. Schou, and R. Svenning, “The Contiguous Art Gallery Problem is Solvable in Polynomial Time,” arXiv preprint arXiv:2412.13938, 2024. [Online]. Available: https://arxiv.org/abs/2412.13938
+    \item F. Terhar and C. Icking, “The Sectional Art Gallery and an Evolutionary Algorithm for Approaching Its Minimum Point Guard Problem,” in *Proc. IEEE Congress on Evolutionary Computation (CEC)*, 2021, pp. 1390–1397. [Online]. Available: https://ieeexplore.ieee.org/document/9504843
+
+
+\end{itemize}
+
+
+\end{document}
